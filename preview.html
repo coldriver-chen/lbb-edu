@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教师个人主页</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#111822;
+    color:#fff;
+    font-family:"Microsoft YaHei",sans-serif;
+}
+
+a{
+    text-decoration:none;
+    color:#fff;
+}
+
+/* ===== 顶部导航 ===== */
+.header{
+    background:#003b82;
+    height:70px;
+    border-bottom:1px solid #2d5d9b;
+}
+
+.header-inner{
+    width:1200px;
+    margin:auto;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+}
+
+.logo-circle{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#fff;
+    margin-right:15px;
+}
+
+.logo-text{
+    line-height:1.4;
+}
+
+.logo-text h2{
+    font-size:18px;
+}
+
+.logo-text p{
+    font-size:12px;
+    opacity:.8;
+}
+
+.nav{
+    display:flex;
+    gap:40px;
+}
+
+.nav a{
+    font-size:15px;
+}
+
+/* ===== 主体 ===== */
+
+.container{
+    width:1200px;
+    margin:30px auto;
+    display:flex;
+    gap:30px;
+}
+
+/* 左侧菜单 */
+
+.sidebar{
+    width:220px;
+}
+
+.menu{
+    background:#161d26;
+    border:1px solid #252f3c;
+}
+
+.menu-item{
+    height:48px;
+    line-height:48px;
+    padding:0 18px;
+    border-bottom:1px solid #252f3c;
+    display:flex;
+    justify-content:space-between;
+    cursor:pointer;
+}
+
+.menu-item:hover{
+    background:#1f2935;
+}
+
+.link-box{
+    margin-top:20px;
+    background:#161d26;
+    border:1px solid #252f3c;
+    padding:15px;
+}
+
+.link-box h4{
+    color:#4db7ff;
+    margin-bottom:10px;
+}
+
+.link-box a{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+/* 内容区域 */
+
+.content{
+    flex:1;
+    background:#161d26;
+    padding:25px;
+}
+
+.profile-text{
+    line-height:1.9;
+    font-size:14px;
+    color:#d5d5d5;
+}
+
+.team-photo{
+    margin-top:25px;
+    width:100%;
+    height:420px;
+    background:#2f3d4d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ccc;
+    font-size:22px;
+}
+
+/* 相关教师 */
+
+.related{
+    margin-top:40px;
+}
+
+.related-title{
+    color:#4db7ff;
+    margin-bottom:20px;
+}
+
+.teacher-list{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.teacher-card{
+    width:90px;
+    text-align:center;
+}
+
+.teacher-avatar{
+    width:90px;
+    height:110px;
+    background:#4a5568;
+}
+
+.teacher-name{
+    margin-top:8px;
+    font-size:13px;
+}
+
+/* 页脚 */
+
+.footer{
+    margin-top:40px;
+    background:#0f1620;
+    border-top:1px solid #253243;
+    text-align:center;
+    padding:25px;
+    color:#999;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 顶部 -->
+<header class="header">
+    <div class="header-inner">
+
+        <div class="logo">
+            <div class="logo-circle"></div>
+            <div class="logo-text">
+                <h2>PERSONAL HOMEPAGE</h2>
+                <p>某大学教师个人主页</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="#">首页</a>
+            <a href="#">学院概况</a>
+            <a href="#">师资队伍</a>
+            <a href="#">关于主页</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- 主体 -->
+<div class="container">
+
+    <!-- 左侧菜单 -->
+    <aside class="sidebar">
+
+        <div class="menu">
+            <div class="menu-item">
+                <span>个人简介</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>课程信息</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>研究方向</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>研究成果</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>发表论文</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>团队成员</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>工作项目</span>
+                <span>></span>
+            </div>
+
+            <div class="menu-item">
+                <span>科研基金</span>
+                <span>></span>
+            </div>
+        </div>
+
+        <div class="link-box">
+            <h4>链接</h4>
+            <a href="#">链接占位符1</a>
+            <a href="#">链接占位符2</a>
+        </div>
+
+    </aside>
+
+    <!-- 右侧内容 -->
+    <main class="content">
+
+        <div class="profile-text">
+            【教师姓名占位符】<br><br>
+
+            这里放置教师简介内容，占位文本即可。
+            可以介绍教育经历、研究方向、科研成果、
+            获奖情况以及学术兼职等信息。
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam.
+        </div>
+
+        <div class="team-photo">
+            团队照片占位图（800 × 420）
+        </div>
+
+        <div class="related">
+
+            <div class="related-title">
+                相关教师
+            </div>
+
+            <div class="teacher-list">
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师A</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师B</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师C</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师D</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师E</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师F</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师G</div>
+                </div>
+
+                <div class="teacher-card">
+                    <div class="teacher-avatar"></div>
+                    <div class="teacher-name">教师H</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+</body>
+</html>
