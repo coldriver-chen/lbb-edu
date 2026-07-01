@@ -1,16 +1,16 @@
 文献阅读 PDF 或其他文档按类别放在以下目录：
 
-- `public\literatures\仿生`
-- `public\literatures\生物`
-- `public\literatures\交叉`
+- `public\literatures\光纤仿生传感`
+- `public\literatures\光纤生物医学传感`
+- `public\literatures\其他交叉领域`
 
 组会记录文档放在以下目录：
 
 - `public\group-meetings\正式组会`
-- `public\group-meetings\自主组会\仿生`
-- `public\group-meetings\自主组会\交叉`
+- `public\group-meetings\自主组会\光纤仿生传感`
+- `public\group-meetings\自主组会\其他交叉领域`
 
-文献阅读和组会记录页面会自动读取对应文件夹中的文档，并在文档名称后显示添加时间。
+文献阅读和组会记录页面会自动读取对应文件夹中的文档，并在文档名称后显示添加日期。
 
 `学术资讯`内容修改 `src\content\academic-news.mdx`
 
