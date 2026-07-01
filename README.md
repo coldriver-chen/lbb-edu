@@ -7,8 +7,8 @@
 组会记录文档放在以下目录：
 
 - `public\group-meetings\正式组会`
-- `public\group-meetings\自主组会\自主组会一`
-- `public\group-meetings\自主组会\自主组会二`
+- `public\group-meetings\自主组会\仿生`
+- `public\group-meetings\自主组会\交叉`
 
 文献阅读和组会记录页面会自动读取对应文件夹中的文档，并在文档名称后显示添加时间。
 
