@@ -1,0 +1,177 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+type FolderConfig = {
+  title: string;
+  dir: string;
+  url: string;
+  children?: FolderConfig[];
+};
+
+type DocumentItem = {
+  name: string;
+  url: string;
+  addedAt: Date;
+};
+
+const { folders } = Astro.props as { folders: FolderConfig[] };
+
+const formatDateTime = (date: Date) => {
+  return new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).format(date);
+};
+
+const getDocuments = (folder: FolderConfig): DocumentItem[] => {
+  if (!fs.existsSync(folder.dir)) return [];
+
+  return fs.readdirSync(folder.dir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && !entry.name.startsWith('.'))
+    .map((entry) => {
+      const filePath = path.join(folder.dir, entry.name);
+      const stat = fs.statSync(filePath);
+
+      return {
+        name: entry.name.replace(/\.[^.]+$/, ''),
+        url: encodeURI(`${folder.url}/${entry.name}`),
+        addedAt: stat.birthtime,
+      };
+    })
+    .sort((a, b) => b.addedAt.getTime() - a.addedAt.getTime());
+};
+---
+
+<div class="document-folder-list">
+  {folders.map((folder) => (
+    <section class="folder-section">
+      <h2>{folder.title}</h2>
+
+      {getDocuments(folder).length > 0 ? (
+        <ul class="document-list">
+          {getDocuments(folder).map((doc) => (
+            <li class="document-item">
+              <a href={doc.url} download class="document-link">{doc.name}</a>
+              <time datetime={doc.addedAt.toISOString()}>{formatDateTime(doc.addedAt)}</time>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="empty-message">暂无文档</p>
+      )}
+
+      {folder.children && (
+        <div class="child-folders">
+          {folder.children.map((child) => (
+            <section class="folder-section child-folder">
+              <h3>{child.title}</h3>
+
+              {getDocuments(child).length > 0 ? (
+                <ul class="document-list">
+                  {getDocuments(child).map((doc) => (
+                    <li class="document-item">
+                      <a href={doc.url} download class="document-link">{doc.name}</a>
+                      <time datetime={doc.addedAt.toISOString()}>{formatDateTime(doc.addedAt)}</time>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="empty-message">暂无文档</p>
+              )}
+            </section>
+          ))}
+        </div>
+      )}
+    </section>
+  ))}
+</div>
+
+<style>
+.document-folder-list {
+  padding: 4px 0;
+}
+
+.folder-section {
+  margin-bottom: 28px;
+}
+
+.folder-section:last-child {
+  margin-bottom: 0;
+}
+
+.folder-section h2 {
+  font-size: 18px;
+  color: #003b82;
+  margin: 0 0 12px;
+  border-bottom: 1px solid #d8e2ef;
+  padding-bottom: 8px;
+}
+
+.folder-section h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 18px 0 10px;
+}
+
+.child-folders {
+  margin-top: 8px;
+  padding-left: 16px;
+  border-left: 3px solid #edf2f8;
+}
+
+.document-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.document-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 16px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e6e6e6;
+}
+
+.document-link {
+  min-width: 0;
+  font-size: 13px;
+  color: #003b82;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.document-link:hover {
+  color: #0056b3;
+}
+
+.document-item time {
+  font-size: 12px;
+  color: #777;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.empty-message {
+  padding: 12px 0;
+  color: #999;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .document-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .document-item time {
+    text-align: left;
+  }
+}
+</style>

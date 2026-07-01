@@ -1,61 +1,25 @@
 ---
-// 读取 public/literatures 目录下的所有 PDF 文件
-const pdfFiles = import.meta.glob('/public/literatures/*.pdf', { eager: false });
-const fileList = Object.keys(pdfFiles).map(path => {
-  const fileName = path.split('/').pop() || '';
-  return fileName;
-});
+import path from 'node:path';
+import DocumentFolderList from './DocumentFolderList.astro';
+
+const publicDir = path.join(process.cwd(), 'public');
+const folders = [
+  {
+    title: '仿生',
+    dir: path.join(publicDir, 'literatures', '仿生'),
+    url: '/literatures/仿生',
+  },
+  {
+    title: '生物',
+    dir: path.join(publicDir, 'literatures', '生物'),
+    url: '/literatures/生物',
+  },
+  {
+    title: '交叉',
+    dir: path.join(publicDir, 'literatures', '交叉'),
+    url: '/literatures/交叉',
+  },
+];
 ---
 
-<div class="literature-list">
-  {fileList.length > 0 ? (
-    <ul class="pdf-list">
-      {fileList.map((file: string) => {
-        const fileName = file.replace(/\.pdf$/i, '');
-        return (
-          <li class="pdf-item">
-            <a href={`/literatures/${file}`} download class="pdf-link">
-              📄 {fileName}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  ) : (
-    <p class="empty-message">暂无文献</p>
-  )}
-</div>
-
-<style>
-.literature-list {
-  padding: 20px;
-}
-
-.pdf-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pdf-item {
-  margin-bottom: 2px;
-}
-
-.pdf-link {
-  font-size: 13px;
-  color: #003b82;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.pdf-link:hover {
-  color: #0056b3;
-}
-
-.empty-message {
-  text-align: center;
-  padding: 40px;
-  color: #999;
-  font-size: 14px;
-}
-</style>
+<DocumentFolderList folders={folders} />

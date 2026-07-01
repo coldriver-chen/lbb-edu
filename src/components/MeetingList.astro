@@ -1,0 +1,32 @@
+---
+import path from 'node:path';
+import DocumentFolderList from './DocumentFolderList.astro';
+
+const publicDir = path.join(process.cwd(), 'public');
+const folders = [
+  {
+    title: '正式组会',
+    dir: path.join(publicDir, 'group-meetings', '正式组会'),
+    url: '/group-meetings/正式组会',
+  },
+  {
+    title: '自主组会',
+    dir: path.join(publicDir, 'group-meetings', '自主组会'),
+    url: '/group-meetings/自主组会',
+    children: [
+      {
+        title: '自主组会一',
+        dir: path.join(publicDir, 'group-meetings', '自主组会', '自主组会一'),
+        url: '/group-meetings/自主组会/自主组会一',
+      },
+      {
+        title: '自主组会二',
+        dir: path.join(publicDir, 'group-meetings', '自主组会', '自主组会二'),
+        url: '/group-meetings/自主组会/自主组会二',
+      },
+    ],
+  },
+];
+---
+
+<DocumentFolderList folders={folders} />
