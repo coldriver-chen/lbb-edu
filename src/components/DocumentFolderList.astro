@@ -102,14 +102,12 @@ const folderViews = folders.map((folder, index) => toFolderView(folder, `folder-
                   <thead>
                     <tr>
                       <th>文档名称</th>
-                      <th>添加时间</th>
                     </tr>
                   </thead>
                   <tbody>
                     {child.documents.map((doc) => (
                       <tr>
                         <td><a href={doc.url} download>{doc.name}</a></td>
-                        <td><time datetime={doc.addedAtIso}>{doc.addedAt}</time></td>
                       </tr>
                     ))}
                   </tbody>
@@ -124,14 +122,12 @@ const folderViews = folders.map((folder, index) => toFolderView(folder, `folder-
             <thead>
               <tr>
                 <th>文档名称</th>
-                <th>添加时间</th>
               </tr>
             </thead>
             <tbody>
               {folder.documents.map((doc) => (
                 <tr>
                   <td><a href={doc.url} download>{doc.name}</a></td>
-                  <td><time datetime={doc.addedAtIso}>{doc.addedAt}</time></td>
                 </tr>
               ))}
             </tbody>

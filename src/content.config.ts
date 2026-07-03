@@ -9,12 +9,20 @@ import { z } from 'astro/zod';
 
 // 4. 为每个集合定义一个 `loader` 和 `schema`
 const tabContent = defineCollection({
-    loader: glob({ base: './src/content', pattern: '**/*.{md,mdx}' }),
+    loader: glob({ base: './content', pattern: '**/*.{md,mdx}' }),
     schema: z.object({
         title: z.string(),
         order: z.number(),
     }),
 });
 
+const docsMeta = defineCollection({
+    loader: glob({ base: './docs', pattern: '**/*.{md}' }),
+    schema: z.object({
+        path: z.string(),
+        date: z.date(),
+    }),
+});
+
 // 5. 导出一个 `collections` 对象来注册你的集合
-export const collections = { tabContent };
+export const collections = { tabContent, docsMeta };
