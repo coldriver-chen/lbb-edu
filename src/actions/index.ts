@@ -5,15 +5,24 @@ export const server = {
   uploadPdf: defineAction({
     accept: "form",
     input: z.object({
+      admin_token: z.string().min(1), // 注意这个token不是github的token
       path: z.string().min(1),
       file: z.instanceof(File),
     }),
-    handler: async ({ path, file }) => {
+    handler: async ({ path, file, admin_token }) => {
       const owner = import.meta.env.GITHUB_OWNER;
       const repo = import.meta.env.GITHUB_REPO;
       const branch = import.meta.env.GITHUB_BRANCH || "main";
       const token = import.meta.env.GITHUB_PAT_TOKEN;
-
+      const rightAdminToken = import.meta.env.ADMIN_TOKEN;
+      
+      if (admin_token !== rightAdminToken) {
+        return {
+          success: false,
+          message: "Admin token is incorrect.",
+        }
+      }
+      
       // 读取文件
       const buffer = Buffer.from(await file.arrayBuffer());
       const content = buffer.toString("base64");
