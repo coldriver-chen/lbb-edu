@@ -12,6 +12,23 @@
 
 文献阅读和组会记录页面会自动读取对应文件夹中的文档，并在文档名称后显示添加日期。
 
+后台上传文档：
+
+1. 运行 `bun run admin`
+2. 打开 `http://127.0.0.1:4322/admin`
+3. 默认账号：`admin`
+4. 默认密码：`admin123456`
+
+可以用环境变量修改后台账号密码：
+
+```powershell
+$env:ADMIN_USER='admin'
+$env:ADMIN_PASSWORD='你的新密码'
+bun run admin
+```
+
+上传后的文件会直接保存到对应的 `public` 目录。上传后如果线上页面没有立即变化，需要重新构建并发布网站。
+
 `学术资讯`内容修改 `src\content\academic-news.mdx`
 
 `课题组新闻`内容修改 `src\content\group-news.mdx`
